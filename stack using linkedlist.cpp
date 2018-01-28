@@ -63,7 +63,7 @@ delete temp;
 }
 };
 
-//Mian function
+//Main function
 int main(){
 int n;
 stack s;
