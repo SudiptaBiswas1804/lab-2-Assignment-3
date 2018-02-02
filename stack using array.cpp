@@ -1,51 +1,74 @@
+// Stack - Object oriented implementation using arrays
 #include <iostream>
 using namespace std;
+#define MAX_SIZE 101 
 
-class stack{
+class Stack
+{
 private:
-int stk[500],top;
+  int A[MAX_SIZE];  // array to store the stack
+	int top;   // variable to mark the top index of stack. 
 public:
-stk(){
-top=-1;
-}
+	// constructor
+	Stack()
+	{
+		top = -1; // for empty array, set top = -1
+	}
 
-void add(int n){
-if(top>500){
-cout<<"The stack is full"<<endl;
-}
-else{
-stk[++top]=n;
-}
-}
+	// Push operation to insert an element on top of stack. 
+	void Push(int x) 
+	{
+	  if(top == MAX_SIZE -1) 
+	  { // overflow case. 
+			cout<<"Error: stack overflow\n";
+			return;
+		}
+		A[++top] = x;
+	}
+ 
+	// Pop operation to remove an element from top of stack.
+	void Pop() 
+	{
+		if(top == -1) 
+		{ // If stack is empty, pop should throw error. 
+			cout<<"Error: No element to pop\n";
+			return;
+		}
+		top--;
+	}
+ 
+	// Top operation to return element at top of stack. 
+	int Top() 
+	{
+		return A[top];
+	}
+ 
+	// This function will return 1 (true) if stack is empty, 0 (false) otherwise
+	int IsEmpty()
+	{
+		if(top == -1) return 1;
+		return 0;
+	}
 
-void delete(){
-if(top<0){
-cout<<"The stack is empty"<<endl;
-}
-else {
-stk[top--];
-}
-}
-
-void display(){
-if(top<0){
-cout<<"The stack is empty"<<endl;
-}
-else{
-for(int i=top; i>=0; i--){
-cout<<stk[i]<<"->";
-}
-}
-}
+	
+	// This will print all the elements in the stack at any stage. 
+	void Print() {
+		int i;
+		cout<<"Stack: ";
+		for(i = 0;i<=top;i++)
+			cout<<A[i]<<"->";
+	cout<<"NULL\n";
+	}
 };
 
-int main(){
-int n;
-stack s;
-s.add(1);
-s.add(2);
-s.display();
-s.delete();
-s.display();
-return 0;
+int main()
+{
+    // Code to test the implementation. 
+    // calling Print() after each push or pop to see the state of stack. 
+	Stack S;
+	S.Push(2);S.Print();
+	S.Push(5);S.Print();
+	S.Push(10);S.Print();
+	S.Pop();S.Print();
+	S.Push(12);S.Print();
 }
